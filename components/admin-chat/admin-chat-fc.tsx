@@ -16,14 +16,15 @@ export const AdminChatsFC: React.FC<{
 }> = ({ socket, clientRooms, roomSelect, sneacIntoRoom }) => {
   return (
     <div className='w-full h-full flex gap-6 overflow-hidden'>
-      <div className='flex flex-1 rounded-md border overflow-hidden'>
+      <div className='flex gap-6 flex-1 overflow-hidden '>
         <AdminClientRoomsList
+          roomSelect={roomSelect}
           clientRooms={clientRooms}
           sneacIntoRoom={sneacIntoRoom}
         />
         <AdminBodyBL socket={socket} roomSelect={roomSelect} />
       </div>
-      <div className='hidden lg:block rounded-md border w-full  max-w-[300px] overflow-hidden relative'>
+      <div className='hidden lg:block w-full  max-w-[300px]'>
         <AdminInfo />
       </div>
     </div>

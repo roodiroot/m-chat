@@ -8,4 +8,6 @@ export interface MessageType {
   roomName: string;
   socketId: string;
   text: string;
+  createdAt: Date;
+  uniqId: string;
 }

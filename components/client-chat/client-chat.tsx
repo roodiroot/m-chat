@@ -11,6 +11,7 @@ export const ClientChat = ({
   disabled,
   setValueInput,
   submit,
+  close,
 }: {
   roomName: string;
   messages: any[];
@@ -18,10 +19,15 @@ export const ClientChat = ({
   disabled: boolean;
   setValueInput: (e: any) => void;
   submit: () => void;
+  close: (value: boolean) => void;
 }) => {
   return (
-    <div className='w-full h-full flex flex-col border shadow-sm rounded-lg overflow-hidden bg-white'>
-      <HeaderChat roomName={roomName} className='bg-primary' />
+    <div className='relative w-full h-full flex flex-col overflow-hidden bg-white'>
+      <HeaderChat
+        roomName={roomName}
+        className='absolute z-20 top-5 inset-x-6'
+        closeChat={close}
+      />
       <BodyChat messages={messages} roomName={roomName} />
       <FooterChat
         value={valueInput}

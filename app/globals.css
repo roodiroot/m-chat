@@ -81,3 +81,18 @@ body {
   height: 100%;
   background: #00000000;
 }
+
+#scroll_castom {
+}
+#scroll_castom::-webkit-scrollbar {
+  width: 6px; /* ширина всей полосы прокрутки */
+}
+
+#scroll_castom::-webkit-scrollbar-track {
+  background: inherit; /* цвет зоны отслеживания */
+}
+
+#scroll_castom::-webkit-scrollbar-thumb {
+  background-color: #f1f0f8; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+}

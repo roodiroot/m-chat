@@ -8,8 +8,9 @@ import { AdminClientLine } from "@/components/admin-chat/admin-clien-line";
 
 export const AdminClientRoomsList: React.FC<{
   clientRooms: Room[];
+  roomSelect: Room;
   sneacIntoRoom: (room: Room) => void;
-}> = memo(({ clientRooms, sneacIntoRoom }) => {
+}> = memo(({ roomSelect, clientRooms, sneacIntoRoom }) => {
   console.log("list rooms component render");
   return (
     <div className=' w-full  max-w-[300px] relative'>
@@ -19,6 +20,7 @@ export const AdminClientRoomsList: React.FC<{
             key={i.roomName}
             room={i}
             onClick={() => sneacIntoRoom(i)}
+            select={roomSelect.roomName === i.roomName}
             className=''
           />
         ))}

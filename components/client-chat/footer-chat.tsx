@@ -1,40 +1,21 @@
 "use client";
 
-import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import { ClientSubmitForm } from "./client-submit-form";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
-export const FooterChat = ({
-  value,
-  disabled,
-  setValue,
-  submit,
-}: {
+export const FooterChat: React.FC<{
   value: string;
   disabled: boolean;
   setValue: (e: any) => void;
   submit: () => void;
-}) => {
+}> = ({ value, disabled, setValue, submit }) => {
   return (
-    <div className='p-6 border-t'>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-        className='flex w-full max-w-sm items-center space-x-2'
-      >
-        <Input
-          type='text'
-          placeholder='Введите сообщение'
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <Button type='submit' size='icon' disabled={disabled}>
-          <PaperPlaneIcon className='h-4 w-4' />
-        </Button>
-      </form>
+    <div className='py-5 px-7'>
+      <ClientSubmitForm
+        value={value}
+        setValue={setValue}
+        disabled={disabled}
+        submit={submit}
+      />
     </div>
   );
 };

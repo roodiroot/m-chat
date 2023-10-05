@@ -1,25 +1,33 @@
 "use client";
-import { memo } from "react";
+import { memo, useRef } from "react";
 
-import { Message } from "@/components/client-chat/message";
+import { MessageBody } from "@/components/client-chat/message-body";
 import { MessageType } from "@/interface/rooms";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { useScroll } from "@/hooks/use-scroll";
+import { AnimatePresence } from "framer-motion";
 
 export const BodyChat = memo(
   ({ messages, roomName }: { messages: MessageType[]; roomName: string }) => {
+    const messageEl = useRef<HTMLDivElement>(null);
+    useScroll(messageEl, messages.length);
+
     return (
-      <div className='flex-1  overflow-hidden relative'>
-        <ScrollArea className='w-full h-full z-50'>
-          <div className='relative z-10 h-full w-full flex flex-col-reverse gap-4 px-2'>
-            {messages?.map((m, i) => (
-              <Message
-                key={`${m?.text}_${i}`}
-                message={m}
-                roomName={roomName}
-              />
-            ))}
+      <div className='z-10 flex-1 overflow-hidden w-full h-full'>
+        <div className='w-full h-full px-7 pt-5'>
+          <div
+            id='scroll_castom'
+            ref={messageEl}
+            className='w-full h-full overflow-y-auto overflow-x-hidden flex flex-col-reverse'
+          >
+            <div className='w-full flex flex-col-reverse gap-4'>
+              <AnimatePresence initial={false} mode='popLayout'>
+                {messages?.map((m) => (
+                  <MessageBody key={m.uniqId} message={m} roomName={roomName} />
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
-        </ScrollArea>
+        </div>
       </div>
     );
   }
