@@ -45,6 +45,7 @@ export const ClientChatBL = ({ className = "" }: { className?: string }) => {
     socket.on("connect", () => {
       const data = { socketId: socket.id, roomName: roomNameLocalStore };
       socket.emit("join_room", data);
+      socket.emit("get_rooms");
     });
 
     socket.on("chat", (e) => {
@@ -78,6 +79,11 @@ export const ClientChatBL = ({ className = "" }: { className?: string }) => {
       return;
     }
     socket.emit("chat", data);
+    socket.emit("last_message", {
+      roomName: roomName,
+      author: roomName,
+      text: valueMessage,
+    });
     setValueMessage("");
     setDisabled(false);
   };

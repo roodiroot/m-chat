@@ -1,27 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MenuLink } from "@/app/(root)/layout";
+import { MenuLinkMain } from "./menu-link-main";
 
-export const Header: React.FC<{ menuLinks: any[] }> = ({ menuLinks }) => {
-  const pathname = usePathname();
-
+export const Header: React.FC<{ menuLinks: MenuLink[] }> = ({ menuLinks }) => {
   return (
     <div className='px-8 pt-6'>
       <div className='bg-fial-900 rounded-3xl flex h-16 items-center px-4'>
         <nav className='flex items-center space-x-4 lg:space-x-6 mx-6'>
           {menuLinks.map((l) => (
-            <Link
-              key={l.name}
-              className={`w-9 h-9 rounded-lg text-white relative hover:bg-white/30 ${
-                pathname === l.to ? "bg-white/30" : ""
-              }`}
-              href={l.to}
-            >
-              <l.ComponentIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
-            </Link>
+            <MenuLinkMain key={l.name} menuLink={l} />
           ))}
         </nav>
         <div className='ml-auto flex items-center space-x-4'>

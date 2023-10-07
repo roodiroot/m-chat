@@ -1,5 +1,6 @@
 "use client";
 
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 import {
   PaperPlaneIcon,
   HomeIcon,
@@ -8,13 +9,22 @@ import {
   MixerHorizontalIcon,
   HeartFilledIcon,
 } from "@radix-ui/react-icons";
+import { IconProps } from "@radix-ui/react-icons/dist/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Header } from "@/components/header-admin/header";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-const menuLinks = [
+export interface MenuLink {
+  name: string;
+  to: string;
+  ComponentIcon: ForwardRefExoticComponent<
+    IconProps & RefAttributes<SVGSVGElement>
+  >;
+}
+
+const menuLinks: MenuLink[] = [
   {
     name: "Главная",
     to: "/",

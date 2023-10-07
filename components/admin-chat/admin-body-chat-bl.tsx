@@ -9,10 +9,10 @@ import { MessageType, Room } from "@/interface/rooms";
 import { fetchMessage } from "@/lib/messages";
 import { ClientSubmitForm } from "../client-chat/client-submit-form";
 
-export const AdminBodyBL: React.FC<{ socket: Socket; roomSelect: Room }> = ({
-  socket,
-  roomSelect,
-}) => {
+export const AdminBodyChatBL: React.FC<{
+  socket: Socket;
+  roomSelect: Room;
+}> = ({ socket, roomSelect }) => {
   const [valueMessage, setValueMessage] = useState("");
   const [message, setMessage] = useState<MessageType[]>([]);
 
@@ -23,7 +23,7 @@ export const AdminBodyBL: React.FC<{ socket: Socket; roomSelect: Room }> = ({
       });
     }
 
-    socket.on("chat", (e: any) => {
+    socket.on("chat", (e: MessageType) => {
       setMessage((messages) => [e, ...messages]);
     });
 
